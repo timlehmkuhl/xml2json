@@ -1,0 +1,9 @@
+all(element)::= <<
+{
+<element>
+}
+>>
+
+pair(name, content)::= <<
+"<name>" : "<content; separator=",\n">"
+>>
