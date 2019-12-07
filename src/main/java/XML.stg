@@ -1,0 +1,23 @@
+empty() ::= ""
+
+item(x) ::= "<x>"
+
+object(fields) ::= <<
+
+<fields; separator="\n">
+
+>>
+
+enclose_element(x) ::= <<
+\<element><x>\</element>
+>>
+
+array(values) ::= <<
+
+<values:enclose_element(); separator="\n">
+
+>>
+
+tag(name,content) ::= <<
+\<<name>\><content>\</<name>\>
+>>
