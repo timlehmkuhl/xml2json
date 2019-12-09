@@ -13,11 +13,11 @@ array(content)::= <<
 >>
 
 pairarray(name, content)::= <<
-"<name>" : ["<content; separator="\", \"">"]
+"<name>": ["<content; separator="\", \"">"]
 >>
 
 emptyarray(name)::= <<
-"<name>" : []
+"<name>": []
 >>
 
 inlay(name, element)::= <<

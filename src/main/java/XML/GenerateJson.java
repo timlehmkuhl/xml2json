@@ -2,6 +2,8 @@ package XML;
 
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -10,6 +12,7 @@ import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -82,13 +85,17 @@ public class GenerateJson   {
 
 
     public static void main(String[] args) throws Exception {
-        String inputFile = null;
-        if ( args.length>0 ) inputFile = args[0];
-        InputStream is = System.in;
-        if ( inputFile!=null ) {
-            is = new FileInputStream(inputFile);
-        }
-        ANTLRInputStream input = new ANTLRInputStream(is);
+        String str = run("G:\\InfProjekte\\XML2JSON\\src\\main\\resources\\example.xml", "", true).render();
+        System.out.println(str);
+    }
+
+    public static ST run(String file, String in, boolean isFile) throws IOException {
+
+        CharStream input = null;
+        if(isFile)
+        input = CharStreams.fromFileName(file);
+        else
+            input = CharStreams.fromString(in);
         XMLLexer lexer = new XMLLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XMLParser parser = new XMLParser(tokens);
@@ -98,9 +105,10 @@ public class GenerateJson   {
         //   System.out.println(tree.toStringTree(parser));
 
         ParseTreeWalker walker = new ParseTreeWalker();
-       // XMLListener listener = new XMLListener();
+        // XMLListener listener = new XMLListener();
         JSONEmitter converter = new JSONEmitter();
         walker.walk(converter, tree);
-        System.out.println(converter.all.render());
+       // System.out.println(converter.all.render());
+        return converter.all;
     }
 }

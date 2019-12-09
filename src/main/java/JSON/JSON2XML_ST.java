@@ -13,6 +13,8 @@ import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 
 /*
@@ -121,24 +123,34 @@ public class JSON2XML_ST {
     }
 
     public static void main(String[] args) throws Exception {
-        String inputFile = null;
-        if ( args.length>0 ) inputFile = args[0];
-        InputStream is = System.in;
-        if ( inputFile!=null ) {
-            is = new FileInputStream(inputFile);
-        }
-        ANTLRInputStream input = new ANTLRInputStream(is);
+     String str = run("G:\\InfProjekte\\XML2JSON\\src\\main\\resources\\example.json").render();
+     System.out.println(str);
+    }
+
+    public static ST run(String file) throws IOException {
+        CharStream input = CharStreams.fromFileName(file);
         JSONLexer lexer = new JSONLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JSONParser parser = new JSONParser(tokens);
         parser.setBuildParseTree(true);
         ParseTree tree = parser.json();
         // show tree in text form
-     //   System.out.println(tree.toStringTree(parser));
+        //   System.out.println(tree.toStringTree(parser));
 
         ParseTreeWalker walker = new ParseTreeWalker();
         XMLEmitter converter = new XMLEmitter();
         walker.walk(converter, tree);
-        System.out.println(converter.xml.get(tree).render());
+       // System.out.println(.render());
+        return converter.xml.get(tree);
+    }
+
+    public static void toFile(String dest, String in){
+        try {
+        FileWriter writer = new FileWriter(dest);
+        writer.write(in);
+        writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
