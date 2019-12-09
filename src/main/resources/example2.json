@@ -1,0 +1,7 @@
+{
+  "description" : "An imaginary server config file",
+  "logs" : ["verbose", "/var/log"],
+  "host" : "antlr.org",
+  "admin" : ["parrt", "tombu"],
+  "aliases" : []
+}

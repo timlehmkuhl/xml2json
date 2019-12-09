@@ -28,25 +28,25 @@ public interface XMLListener extends ParseTreeListener {
 	 */
 	void exitPair(XMLParser.PairContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#start}.
+	 * Enter a parse tree produced by {@link XMLParser#startv}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart(XMLParser.StartContext ctx);
+	void enterStartv(XMLParser.StartvContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#start}.
+	 * Exit a parse tree produced by {@link XMLParser#startv}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart(XMLParser.StartContext ctx);
+	void exitStartv(XMLParser.StartvContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#end}.
+	 * Enter a parse tree produced by {@link XMLParser#endv}.
 	 * @param ctx the parse tree
 	 */
-	void enterEnd(XMLParser.EndContext ctx);
+	void enterEndv(XMLParser.EndvContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#end}.
+	 * Exit a parse tree produced by {@link XMLParser#endv}.
 	 * @param ctx the parse tree
 	 */
-	void exitEnd(XMLParser.EndContext ctx);
+	void exitEndv(XMLParser.EndvContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#value}.
 	 * @param ctx the parse tree
@@ -57,4 +57,14 @@ public interface XMLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValue(XMLParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#array}.
+	 * @param ctx the parse tree
+	 */
+	void enterArray(XMLParser.ArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#array}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray(XMLParser.ArrayContext ctx);
 }

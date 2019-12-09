@@ -1,9 +1,21 @@
 all(element)::= <<
 {
-<element>
+  <element; separator=",\n">
 }
 >>
 
 pair(name, content)::= <<
 "<name>" : "<content; separator=",\n">"
+>>
+
+array(content)::= <<
+[<content; separator=",">]
+>>
+
+pairarray(name, content)::= <<
+"<name>" : ["<content; separator="\", \"">"]
+>>
+
+emptyarray(name)::= <<
+"<name>" : []
 >>

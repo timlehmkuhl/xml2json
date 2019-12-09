@@ -4,13 +4,15 @@ grammar XML;
 xml: pair* ;
 
 
-pair:  start (value |  pair*) end;
+pair:  startv (value | array) endv;
 
-start: '<' STRING '>';
+startv: '<' value '>';
 
-end: '</' STRING '>';
+endv: '</' value '>';
 
 value:   STRING;
+
+array: pair*;
 
 
 LETTER :  [a-zA-Z] ;
