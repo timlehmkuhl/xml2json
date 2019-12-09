@@ -19,3 +19,11 @@ pairarray(name, content)::= <<
 emptyarray(name)::= <<
 "<name>" : []
 >>
+
+inlay(name, element)::= <<
+"<name>" : {<element; separator=", ">}
+>>
+
+inlaypair(subname, content)::= <<
+"<subname>":"<content; separator="\", \"">"
+>>
