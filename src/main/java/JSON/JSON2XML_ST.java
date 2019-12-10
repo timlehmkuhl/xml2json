@@ -44,7 +44,7 @@ to
 public class JSON2XML_ST {
     public static class XMLEmitter extends JSONBaseListener {
         ParseTreeProperty<ST> xml = new ParseTreeProperty<ST>();
-        STGroup templates = new STGroupFile("G:\\InfProjekte\\XML2JSON\\src\\main\\java\\XML.stg");
+        STGroup templates = new STGroupFile("./src/main/java/XML.stg");
 
         @Override
         public void exitJson(JSONParser.JsonContext ctx) {
@@ -123,7 +123,7 @@ public class JSON2XML_ST {
     }
 
     public static void main(String[] args) throws Exception {
-     String str = run("G:\\InfProjekte\\XML2JSON\\src\\main\\resources\\example.json").render();
+     String str = run("./src/main/resources/example.json").render();
      System.out.println(str);
     }
 

@@ -1,7 +1,8 @@
 {
-  "description" : "An imaginary server config file",
-  "logs" : ["verbose", "/var/log"],
-  "host" : "antlr.org",
-  "admin" : ["parrt", "tombu"],
-  "aliases" : []
+  "modul" : "Uebersetzertechniken",
+  "veranstaltungen" : ["vorlesungen", "praktika"],
+  "prof" : "Krohn",
+  "vorlesungstermine" : ["dienstag", "mittwoch"],
+  "themen" : {"thema1" :"regulaere ausdruecke", "thema2" :"Lexer", "thema3" :"Formale Sprachen"},
+  "praktikumstermine" : ["montag", "dienstag", "mittwoch"]
 }

@@ -17,10 +17,22 @@ public class UnitTest {
 
     @Test
     public void test() throws Exception {
-        ST json2xml = JSON2XML_ST.run("G:\\InfProjekte\\XML2JSON\\src\\main\\resources\\example.json");
+        ST json2xml = JSON2XML_ST.run("./src/main/resources/example.json");
         ST xml2json = GenerateJson.run("", json2xml.render(), false);
-
+        System.out.println(json2xml.render());
+        System.out.println();
+        System.out.println(xml2json.render());
         assertEquals(fileToStr("./src/main/resources/example.json"), xml2json.render());
+    }
+
+    @Test
+    public void test2() throws Exception {
+        ST json2xml = JSON2XML_ST.run("./src/main/resources/example2.json");
+        ST xml2json = GenerateJson.run("", json2xml.render(), false);
+        System.out.println(json2xml.render());
+        System.out.println();
+        System.out.println(xml2json.render());
+        assertEquals(fileToStr("./src/main/resources/example2.json"), xml2json.render());
     }
 
     public static String fileToStr(String ort) throws IOException {

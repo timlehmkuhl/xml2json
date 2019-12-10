@@ -22,17 +22,11 @@ public class GenerateJson   {
     public static class JSONEmitter extends XMLBaseListener {
         String test = "";
 
-        STGroup templates = new STGroupFile("G:\\InfProjekte\\XML2JSON\\src\\main\\java\\JSON.stg");
+        STGroup templates = new STGroupFile("./src/main/java/JSON.stg");
         ST all = templates.getInstanceOf("all");
         List<String> names = new LinkedList<>();
 
-        @Override
-        public void exitValue(XMLParser.ValueContext ctx) {
 
-          //  System.err.println(ctx.getParent().getChild(0).getText());
-         //   System.out.println(ctx.getText());
-          //  test += ctx.getText() + "\n";
-        }
 
         @Override
         public void exitPair(XMLParser.PairContext ctx) {
@@ -45,8 +39,6 @@ public class GenerateJson   {
            }
 
         }
-
-
 
 
         @Override
@@ -85,7 +77,7 @@ public class GenerateJson   {
 
 
     public static void main(String[] args) throws Exception {
-        String str = run("G:\\InfProjekte\\XML2JSON\\src\\main\\resources\\example.xml", "", true).render();
+        String str = run("./src/main/resources/example.xml", "", true).render();
         System.out.println(str);
     }
 
@@ -101,14 +93,9 @@ public class GenerateJson   {
         XMLParser parser = new XMLParser(tokens);
         parser.setBuildParseTree(true);
         ParseTree tree = parser.xml();
-        // show tree in text form
-        //   System.out.println(tree.toStringTree(parser));
-
         ParseTreeWalker walker = new ParseTreeWalker();
-        // XMLListener listener = new XMLListener();
         JSONEmitter converter = new JSONEmitter();
         walker.walk(converter, tree);
-       // System.out.println(converter.all.render());
         return converter.all;
     }
 }
