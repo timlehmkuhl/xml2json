@@ -27,7 +27,10 @@ public class GenerateJson   {
         List<String> names = new LinkedList<>();
 
 
-
+        /**
+         * Einzelner Datensatz, ohne Kinder
+         * @param ctx
+         */
         @Override
         public void exitPair(XMLParser.PairContext ctx) {
             String name = ctx.startv().value().getText();
@@ -41,6 +44,10 @@ public class GenerateJson   {
         }
 
 
+        /**
+         * Es gibt Kinder, Arrays oder neue Datensaetze
+         * @param ctx
+         */
         @Override
         public void enterArray(XMLParser.ArrayContext ctx) {
             ST inlay = templates.getInstanceOf("inlay");
@@ -59,8 +66,8 @@ public class GenerateJson   {
                String arrayname = ctx.pair().get(i).getChild(0).getText().replace("<", "").replace(">", "");
                names.add(arrayname);
                i++;
-               if(!arrayname.equals("element")){
-                   System.err.println(arrayname);
+               if(!arrayname.equals("element")){    //kein Array, sondern weiterer Datensatz
+                 //  System.err.println(arrayname);
                    ST inlaypair = templates.getInstanceOf("inlaypair");
                    inlaypair.add("subname", arrayname).add("content", pair.getChild(1).getText());
                    flag = true;
@@ -69,8 +76,8 @@ public class GenerateJson   {
                pairarray.add("content", pair.getChild(1).getText());
 
            }
-           if(flag)  all.add("element", inlay);
-            else all.add("element", pairarray);
+           if(flag)  all.add("element", inlay);     //es war kein Array
+            else all.add("element", pairarray);     //es war ein Array
         }
     }
 

@@ -1,4 +1,3 @@
-// Derived from http://json.org
 grammar XML;
 
 xml: pair* ;
